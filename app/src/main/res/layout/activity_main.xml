@@ -7,14 +7,11 @@
     android:id="@+id/drawerLayout"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recycler_images"/>
-    </LinearLayout>
+    </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

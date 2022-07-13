@@ -4,4 +4,12 @@
         android:id="@+id/navItem_about"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="About This app" />
+    <item
+        android:id="@+id/navItem_images"
+        android:icon="@drawable/ic_baseline_image_24"
+        android:title="Images" />
+    <item
+        android:id="@+id/navItem_musics"
+        android:icon="@drawable/ic_baseline_library_music_24"
+        android:title="Musics" />
 </menu>

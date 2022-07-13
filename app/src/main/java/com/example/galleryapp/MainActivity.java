@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -20,21 +22,21 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.galleryapp.Fragments.ImageListFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView recycler_images;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
-    private List<String> paths = new ArrayList<>();
-    private ImageAdapter adapter;
     private final int PERMISSION_REQCODE = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,58 +56,37 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navItem_about:
                         Toast.makeText(MainActivity.this, "About item", Toast.LENGTH_SHORT).show();
                         return true;
+                    case R.id.navItem_images:
+                        Toast.makeText(MainActivity.this, "Images", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, new ImageListFragment())
+                                .commit();
+                        return true;
+                    case R.id.navItem_musics:
+                        Toast.makeText(MainActivity.this, "Musics", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, new MusicListFragment())
+                                .commit();
+                        return true;
                     default:
                         Toast.makeText(MainActivity.this, "no matched", Toast.LENGTH_SHORT).show();
                         return false;
                 }
             }
         });
-
-        recycler_images = findViewById(R.id.recycler_images);
-        recycler_images.setHasFixedSize(true);
-        recycler_images.setLayoutManager(new GridLayoutManager(this, 3));
-//        recycler_images.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
-
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        adapter = new ImageAdapter(this, paths);
-        recycler_images.setAdapter(adapter);
-
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE
-        + Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                + Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQCODE);
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQCODE);
         } else {
-            appSetUP();
+
         }
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // パーミッションが許可された時の処理
-        if(requestCode == PERMISSION_REQCODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            appSetUP();
-        }
-    }
 
-    @SuppressLint("Range")
-    private void appSetUP() {
-        Cursor cursor = getApplicationContext().getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                null,
-                null,
-                null,
-                null
-        );
 
-        while(cursor.moveToNext()) {
-            paths.add(cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA)));
-        }
 
-        ImageAdapter adapter = new ImageAdapter(this, paths);
-        recycler_images.setAdapter(adapter);
-    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -115,10 +96,14 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
-//    private final View.OnClickListener imageListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // パーミッションが許可された時の処理
+        if(requestCode == PERMISSION_REQCODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, new ImageListFragment())
+                    .commit();
+        }
+    }
 }
