@@ -19,6 +19,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
     private List<String> paths = new ArrayList<>();
+    private ImageAdapter adapter;
     private final int PERMISSION_REQCODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         recycler_images.setLayoutManager(new GridLayoutManager(this, 3));
 //        recycler_images.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
-        ImageAdapter adapter = new ImageAdapter(this, paths);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        adapter = new ImageAdapter(this, paths);
         recycler_images.setAdapter(adapter);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE
@@ -112,4 +115,10 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+//    private final View.OnClickListener imageListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//        }
+//    }
 }

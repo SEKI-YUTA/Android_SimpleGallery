@@ -1,5 +1,6 @@
 package com.example.galleryapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -37,6 +38,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
                 Intent intent = new Intent(context, ImageDetailActivity.class);
                 intent.putExtra("path", path);
                 context.startActivity(intent);
+                ((Activity) context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
     }
