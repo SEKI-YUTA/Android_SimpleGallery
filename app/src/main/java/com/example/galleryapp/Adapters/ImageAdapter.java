@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.galleryapp.ImageDetailActivity;
 import com.example.galleryapp.R;
 import com.example.galleryapp.ViewHolders.ImageViewHolder;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
@@ -35,7 +37,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         String path = paths.get(holder.getAdapterPosition());
-        holder.image_item.setImageURI(Uri.parse(path));
+//        holder.image_item.setImageURI(Uri.parse(path));
+        Picasso.get().load(new File(path)).into(holder.image_item);
         holder.image_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
