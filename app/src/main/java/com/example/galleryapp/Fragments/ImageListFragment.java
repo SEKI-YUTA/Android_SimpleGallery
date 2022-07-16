@@ -32,11 +32,13 @@ public class ImageListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_image_list, container, false);
         recycler_images = view.findViewById(R.id.recycler_images);
+        recycler_images.setItemViewCacheSize(100);
         recycler_images.setHasFixedSize(true);
-        recycler_images.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycler_images.setLayoutManager(new GridLayoutManager(getContext(), 3));
 //        recycler_images.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
         adapter = new ImageAdapter(getContext(), paths);
+        adapter.setHasStableIds(true);
         recycler_images.setAdapter(adapter);
 
         appSetUP();

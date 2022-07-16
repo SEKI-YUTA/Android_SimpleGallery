@@ -3,6 +3,8 @@ package com.example.galleryapp.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +39,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         String path = paths.get(holder.getAdapterPosition());
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
+        Bitmap resized = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+        holder.image_item.setImageBitmap(resized);
 //        holder.image_item.setImageURI(Uri.parse(path));
-        Picasso.get().load(new File(path)).into(holder.image_item);
+//        Picasso.get().load(new File(path)).into(holder.image_item);
         holder.image_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,4 +60,5 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     public int getItemCount() {
         return paths.size();
     }
+
 }
