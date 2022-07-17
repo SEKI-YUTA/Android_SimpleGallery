@@ -9,13 +9,16 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.galleryapp.Fragments.ImageListFragment;
 import com.example.galleryapp.Fragments.AudioListFragment;
+import com.example.galleryapp.Fragments.VideoListFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,19 +45,30 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navItem_about:
                         Toast.makeText(MainActivity.this, "About item", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
                         return true;
                     case R.id.navItem_images:
                         Toast.makeText(MainActivity.this, "Images", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, new ImageListFragment())
                                 .commit();
+                        drawerLayout.closeDrawers();
                         return true;
                     case R.id.navItem_musics:
                         Toast.makeText(MainActivity.this, "Musics", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, new AudioListFragment())
                                 .commit();
+                        drawerLayout.closeDrawers();
                         return true;
+                    case R.id.navItem_videos:
+                        Toast.makeText(MainActivity.this, "Videos", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, new VideoListFragment())
+                                .commit();
+                        drawerLayout.closeDrawers();
+                        return true;
+
                     default:
                         Toast.makeText(MainActivity.this, "no matched", Toast.LENGTH_SHORT).show();
                         return false;
@@ -93,4 +107,19 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+//    private final View.OnLongClickListener listener = new View.OnLongClickListener() {
+//        @Override
+//        public boolean onLongClick(View view) {
+//            MyDialogFragment dialog = new MyDialogFragment();
+//            dialog.show(getSupportFragmentManager(), "dialog");
+//            return false;
+//        }
+//    };
+//
+//    public View.OnLongClickListener getListener() {
+//        MyDialogFragment dialog = new MyDialogFragment();
+//        dialog.show(getSupportFragmentManager(), "aaa");
+//        return listener;
+//    }
 }

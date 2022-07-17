@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.119" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.119" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.119" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.119" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/layout/activity_video_player.xml" value="0.1" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/layout/audio_item.xml" value="0.1" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/layout/fragment_video_list.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/layout/image_item.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/layout/video_dialog.xml" value="0.30512820512820515" />
+        <entry key="..\:/Users/yuta/Desktop/apps/java/Android_SimpleGallery/app/src/main/res/menu/nav_menu.xml" value="0.1" />
         <entry key="..\:/Users/yuta/Desktop/apps/java/GalleryApp/app/src/main/res/layout/activity_image_detail.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/yuta/Desktop/apps/java/GalleryApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/yuta/Desktop/apps/java/GalleryApp/app/src/main/res/layout/drawer_header.xml" value="0.14719202898550723" />

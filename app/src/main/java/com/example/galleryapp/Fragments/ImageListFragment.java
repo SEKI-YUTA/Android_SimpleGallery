@@ -38,7 +38,6 @@ public class ImageListFragment extends Fragment {
 //        recycler_images.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
         adapter = new ImageAdapter(getContext(), paths);
-        adapter.setHasStableIds(true);
         recycler_images.setAdapter(adapter);
 
         appSetUP();
